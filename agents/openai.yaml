@@ -1,0 +1,6 @@
+interface:
+  display_name: "GitHub 项目上传"
+  short_description: "安全初始化、提交并推送项目到 GitHub"
+  default_prompt: "使用 $github-upload 将当前项目上传到 GitHub，先检查认证、敏感文件和远程仓库信息，再执行提交与推送。"
+policy:
+  allow_implicit_invocation: true
