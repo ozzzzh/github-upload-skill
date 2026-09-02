@@ -19,13 +19,14 @@ description: 将本地项目安全地初始化、提交并推送到 GitHub；适
    - 如果还不是 Git 仓库，先检查项目内容，再执行 `git init`。
    - 如果已经存在远程仓库，先核对远程 URL 和当前分支；不要擅自更换或删除远程。
 4. 在添加文件前检查敏感信息和大文件。至少检查 `.env*`、私钥、证书、云服务凭据、token、密码、构建产物、依赖目录和明显的大文件。将应排除的内容加入 `.gitignore`，但不要覆盖用户已有的 `.gitignore`；修改前先读取并保留其规则。
-5. 展示拟提交的文件摘要和目标远程仓库。若发现疑似密钥、未跟踪的大文件、已有远程历史，暂停并向用户说明，除非用户明确授权继续。
-6. 在用户授权后执行：
+5. 检查项目是否已有 `README.md` 或其他 README 文件。README 缺失时默认只提示，不要擅自创建；如果用户明确要求生成 README，先根据项目实际文件和配置生成简洁说明，再将 README 纳入待提交摘要。
+6. 展示拟提交的文件摘要和目标远程仓库。若发现疑似密钥、未跟踪的大文件、已有远程历史，暂停并向用户说明，除非用户明确授权继续。
+7. 在用户授权后执行：
    - `git add` 只添加确认过的项目文件。
    - 用清晰的提交信息执行 `git commit`。
    - 新仓库默认将当前分支规范为 `main`，但若项目已有明确分支约定则保留。
    - 新远程仓库优先使用 `gh repo create <owner>/<repo> --source=. --remote=origin --push`；如果仓库已存在，则使用现有 remote 并执行普通 `git push -u origin <branch>`。
-7. 推送后验证：检查 `git status`, `git remote -v`, `git log -1 --oneline`，并用 `gh repo view --web` 或 `gh repo view` 确认远程仓库可访问。
+8. 推送后验证：检查 `git status`, `git remote -v`, `git log -1 --oneline`，并用 `gh repo view --web` 或 `gh repo view` 确认远程仓库可访问。
 
 ## 安全边界
 
